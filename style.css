@@ -6,7 +6,7 @@ body {
   font-family: 'Teko', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* Aligns content at the bottom */
+  justify-content: flex-end;
 }
 
 /* Audio Player Style */
@@ -14,75 +14,112 @@ audio {
   position: absolute;
   bottom: 20px;
   left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Shift back by 50% of its own width */
-  width: 50%; /* 50% of the page width */
+  transform: translateX(-50%);
+  width: 50%; /* Default width */
   height: 40px;
-  background: none; /* Remove any background color or gradient */
+  background: none;
   border: none;
   outline: none;
-  box-shadow: none; /* Remove the blue glow effect */
-  border-radius: 5px; /* Slight rounded corners */
 }
-
 
 /* Dropdown Selector Style */
 select {
   position: absolute;
   top: 10px;
-  right: 10px; /* Moves dropdown to the top-right corner */
+  right: 10px;
   padding: 10px 15px;
   font-family: inherit;
-  letter-spacing: 2px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
-  background: linear-gradient(to right, #001133, #007BFF); /* Default gradient */
-  color: white; /* White text color */
+  background: linear-gradient(to right, #001133, #007BFF);
+  color: white;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Glow effect */
-  outline: none;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 /* Hover Effect for Dropdown */
 select:hover {
-  background: #007BFF; /* Brighter blue on hover */
-  box-shadow: 0 0 20px rgba(0, 123, 255, 1); /* Stronger glow */
+  background: #007BFF;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 1);
 }
 
-/* Focus Effect for Dropdown */
+/* Dropdown Focus Effect */
 select:focus {
-  background: linear-gradient(to right, #001133, #007BFF); /* Keep gradient */
-  color: black; /* Ensure text remains white */
   box-shadow: 0 0 25px rgba(0, 123, 255, 1);
 }
 
-/* Prevent White Background on Blur */
-select:invalid,
-select:disabled,
-select:not(:focus) {
-  background: linear-gradient(to right, #001133, #007BFF); /* Force gradient */
-  color: white; /* White text color */
+/* Captions Style */
+#captions-container {
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
 }
 
-/* Custom Scrollbar for Dropdown */
-select::-webkit-scrollbar {
-  width: 8px;
-}
-select::-webkit-scrollbar-thumb {
-  background: #007BFF;
+/* Album Art */
+#album-art {
+  display: block;
+  margin: 0 auto;
+  width: 200px; /* Fixed size for larger screens */
+  height: 200px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
-#album-art {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.8); /* Glow effect */
-  top: 45%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%);
-  object-fit: cover;
+/* Media Query for Mobile Screens */
+@media (max-width: 768px) {
+  /* Smaller Audio Player */
+  audio {
+    width: 90%; /* Full width on small screens */
+    height: 35px; /* Slightly smaller */
+  }
+
+  /* Dropdown Selector */
+  select {
+    font-size: 14px; /* Smaller font size */
+    padding: 8px 12px;
+    top: 5px;
+    right: 5px; /* Adjust positioning */
+  }
+
+  /* Captions */
+  #captions-container {
+    font-size: 16px; /* Smaller text for captions */
+    bottom: 10%; /* Adjusted position */
+  }
+
+  /* Album Art */
+  #album-art {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Media Query for Extra Small Screens */
+@media (max-width: 480px) {
+  audio {
+    width: 100%; /* Full width */
+    height: 30px;
+  }
+
+  select {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  #captions-container {
+    font-size: 14px;
+  }
+
+  #album-art {
+    width: 120px;
+    height: 120px;
+  }
 }
