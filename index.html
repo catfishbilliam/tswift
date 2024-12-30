@@ -8,8 +8,8 @@
   <!-- Suppress favicon error -->
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Audiowide&family=Cedarville+Cursive&family=Fascinate&family=Inter:ital,opsz,wght@0,14..32,700;1,14..32,700&family=Lunasima:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Dropdown for Song Selection -->
@@ -18,11 +18,10 @@
     <option value="hey-now.mp3">hey now</option>
     <option value="dodger.mp3">dodger</option>
     <option value="peekaboo.mp3">peekaboo</option>
-
   </select>
 
+  <!-- Album Art -->
   <img id="album-art" src="gnx.jpg" alt="Album Art" />
-
 
   <!-- Audio Player -->
   <audio id="audio-player" controls>
@@ -32,13 +31,48 @@
   <!-- Captions Track -->
   <track id="captions-track" src="captions.vtt" kind="subtitles" srclang="en" label="English" default />
 
-  
+  <!-- GSAP Script -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
 
   <!-- Three.js Module -->
   <script type="module">
     import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
     window.THREE = THREE;
   </script>
+
+    <!-- GSAP Animation for Album Art -->
+    <script>
+      const albumArt = document.getElementById('album-art');
+  
+      // GSAP Glow Effect
+      gsap.to(albumArt, {
+        boxShadow: '0 0 20px 5px rgba(0, 123, 255, 0.8)', // Glow effect
+        repeat: -1, // Infinite glow loop
+        yoyo: true, // Smooth in-out glow
+        duration: 1.5, // Glow transition
+        ease: 'sine.inOut',
+      });
+  
+      // GSAP Spinning Animation
+      gsap.to(albumArt, {
+        rotation: 360, // Full spin
+        duration: 10, // Spins every 10 seconds
+        repeat: -1, // Infinite loop
+        ease: 'linear', // Continuous smooth spin
+      });
+  
+      // Hover Animation for Zoom
+      albumArt.addEventListener('mouseenter', () => {
+        gsap.to(albumArt, { scale: 1.2, duration: 0.3 }); // Slight zoom-in effect
+      });
+  
+      albumArt.addEventListener('mouseleave', () => {
+        gsap.to(albumArt, { scale: 1.0, duration: 0.3 }); // Return to normal size
+      });
+    </script>
+  
+
+  <!-- Main JavaScript -->
   <script type="module" src="index.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@ select:hover {
 
 select:focus {
   background: linear-gradient(to right, #001133, #007BFF);
-  color: white;
+  color: black;
   box-shadow: 0 0 25px rgba(0, 123, 255, 1);
 }
 
