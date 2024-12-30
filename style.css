@@ -1,3 +1,5 @@
+/* ---------- DESKTOP DEFAULT STYLES ---------- */
+
 /* General Body Style */
 body {
   margin: 0;
@@ -9,117 +11,112 @@ body {
   justify-content: flex-end; /* Aligns content at the bottom */
 }
 
-/* Audio Player Style */
+/* Audio Player - Desktop */
 audio {
   position: absolute;
   bottom: 20px;
   left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Shift back by 50% of its own width */
-  width: 50%; /* 50% of the page width */
+  transform: translateX(-50%);
+  width: 50%; /* 50% width */
   height: 40px;
-  background: none; /* Remove any background color or gradient */
+  background: none;
   border: none;
   outline: none;
-  box-shadow: none; /* Remove the blue glow effect */
-  border-radius: 5px; /* Slight rounded corners */
+  box-shadow: none;
+  border-radius: 5px;
 }
 
-
-/* Dropdown Selector Style */
+/* Dropdown Selector - Desktop */
 select {
   position: absolute;
   top: 10px;
-  right: 10px; /* Moves dropdown to the top-right corner */
+  right: 10px;
   padding: 10px 15px;
   font-family: inherit;
   letter-spacing: 2px;
   font-size: 18px;
   font-weight: bold;
-  background: linear-gradient(to right, #001133, #007BFF); /* Default gradient */
-  color: white; /* White text color */
+  background: linear-gradient(to right, #001133, #007BFF);
+  color: white;
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Glow effect */
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-/* Hover Effect for Dropdown */
+/* Dropdown Hover and Focus */
 select:hover {
-  background: #007BFF; /* Brighter blue on hover */
-  box-shadow: 0 0 20px rgba(0, 123, 255, 1); /* Stronger glow */
+  background: #007BFF;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 1);
 }
 
-/* Focus Effect for Dropdown */
 select:focus {
-  background: linear-gradient(to right, #001133, #007BFF); /* Keep gradient */
-  color: black; /* Ensure text remains white */
+  background: linear-gradient(to right, #001133, #007BFF);
+  color: white;
   box-shadow: 0 0 25px rgba(0, 123, 255, 1);
 }
 
-/* Prevent White Background on Blur */
-select:invalid,
-select:disabled,
-select:not(:focus) {
-  background: linear-gradient(to right, #001133, #007BFF); /* Force gradient */
-  color: white; /* White text color */
-}
-
-/* Custom Scrollbar for Dropdown */
-select::-webkit-scrollbar {
-  width: 8px;
-}
-select::-webkit-scrollbar-thumb {
-  background: #007BFF;
-  border-radius: 10px;
-}
-
+/* Album Art - Desktop */
 #album-art {
   position: absolute;
   width: 200px;
   height: 200px;
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.8); /* Glow effect */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.8);
   top: 45%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%);
   object-fit: cover;
 }
 
+/* Captions - Desktop */
+#captions-container {
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+}
+
+/* ---------- MOBILE-SPECIFIC CHANGES ---------- */
 @media (max-width: 768px) {
   /* Audio Player */
   audio {
-    width: 90%; /* Full width for mobile */
-    height: 35px; /* Slightly smaller height */
+    width: 90%;
+    height: 35px;
   }
 
   /* Dropdown Selector */
   select {
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px;
     padding: 8px 12px;
     top: 5px;
-    right: 5px; /* Adjust position */
+    right: 5px;
   }
 
   /* Captions */
   #captions-container {
-    font-size: 16px; /* Smaller font size for captions */
-    bottom: 10%; /* Move slightly higher on mobile */
+    font-size: 16px;
+    bottom: 10%;
   }
 
   /* Album Art */
   #album-art {
     width: 150px;
-    height: 150px; /* Smaller album art */
+    height: 150px;
   }
 }
 
-/* -------- SMALLER MOBILE-SPECIFIC CHANGES -------- */
+/* ---------- EXTRA SMALL MOBILE SCREENS (480px) ---------- */
 @media (max-width: 480px) {
   /* Audio Player */
   audio {
-    width: 100%; /* Full width for very small screens */
+    width: 100%;
     height: 30px;
   }
 
@@ -137,6 +134,6 @@ select::-webkit-scrollbar-thumb {
   /* Album Art */
   #album-art {
     width: 120px;
-    height: 120px; /* Very small album art */
+    height: 120px;
   }
 }
