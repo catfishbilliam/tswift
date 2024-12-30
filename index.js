@@ -196,25 +196,30 @@ function handleResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 
-  // Adjust Circular Visualizer
-  const newRadius = isMobile ? 80 : 125; // Smaller radius for mobile
-  const newBarHeight = isMobile ? 7 : 10; // Shorter bars for mobile
+  // Circular Visualizer
+  const newRadius = isMobile ? 110 : 125; // Slightly smaller radius for mobile
+  const newBarHeight = isMobile ? 8 : 10; // Slightly shorter bars for mobile
 
   bars.forEach((bar, i) => {
     const angle = (i / numBars) * Math.PI * 2;
+
+    // Position bars dynamically based on screen size
     bar.position.x = Math.cos(angle) * newRadius;
-    bar.position.y = Math.sin(angle) * newRadius + (isMobile ? 30 : 60); // Lower the circle for mobile
+    bar.position.y = Math.sin(angle) * newRadius + (isMobile ? 50 : 60); // Slightly lowered for mobile
+
+    // Dynamic height adjustment
     bar.scale.z = newBarHeight;
   });
 
   // Adjust Wave Mesh
-  const newGridSizeX = isMobile ? 100 : 150; // Fewer grid lines for mobile
-  const newGridSizeZ = isMobile ? 150 : 250; // Smaller depth for mobile
+  const newGridSizeX = isMobile ? 120 : 150; // Minor reduction for mobile
+  const newGridSizeZ = isMobile ? 200 : 250; // Maintain visual depth
+  const newSpacing = window.innerWidth / newGridSizeX;
 
-  waveMesh.geometry.dispose(); // Clear old geometry
+  waveMesh.geometry.dispose(); // Dispose old geometry
   waveMesh.geometry = new THREE.PlaneGeometry(
     window.innerWidth,
-    newGridSizeZ * gridSpacing,
+    newGridSizeZ * newSpacing, // Adjust depth scaling
     newGridSizeX,
     newGridSizeZ
   );
@@ -222,12 +227,11 @@ function handleResize() {
   waveMesh.geometry.attributes.position.needsUpdate = true;
 
   // Adjust Camera Position
-  camera.position.y = isMobile ? 30 : 40; // Lower camera height on mobile
-  camera.position.z = isMobile ? 200 : 300; // Move closer to the scene for smaller screens
+  camera.position.y = isMobile ? 35 : 40; // Slightly lower camera for mobile
+  camera.position.z = isMobile ? 250 : 300; // Keep a balanced distance
   camera.lookAt(0, 40, 50);
 }
 
 // Add Resize Listener
 window.addEventListener('resize', handleResize);
 handleResize(); // Initialize the resize settings
-
