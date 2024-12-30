@@ -6,7 +6,7 @@ body {
   font-family: 'Teko', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Aligns content at the bottom */
 }
 
 /* Audio Player Style */
@@ -14,71 +14,84 @@ audio {
   position: absolute;
   bottom: 20px;
   left: 50%; /* Center horizontally */
-  transform: translateX(-50%);
-  width: 50%; /* Default width */
+  transform: translateX(-50%); /* Shift back by 50% of its own width */
+  width: 50%; /* 50% of the page width */
   height: 40px;
-  background: none;
+  background: none; /* Remove any background color or gradient */
   border: none;
   outline: none;
+  box-shadow: none; /* Remove the blue glow effect */
+  border-radius: 5px; /* Slight rounded corners */
 }
+
 
 /* Dropdown Selector Style */
 select {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 10px; /* Moves dropdown to the top-right corner */
   padding: 10px 15px;
   font-family: inherit;
-  font-size: 16px;
+  letter-spacing: 2px;
+  font-size: 18px;
   font-weight: bold;
-  background: linear-gradient(to right, #001133, #007BFF);
-  color: white;
+  background: linear-gradient(to right, #001133, #007BFF); /* Default gradient */
+  color: white; /* White text color */
   border: none;
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); /* Glow effect */
+  outline: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 /* Hover Effect for Dropdown */
 select:hover {
-  background: #007BFF;
-  box-shadow: 0 0 20px rgba(0, 123, 255, 1);
+  background: #007BFF; /* Brighter blue on hover */
+  box-shadow: 0 0 20px rgba(0, 123, 255, 1); /* Stronger glow */
 }
 
-/* Dropdown Focus Effect */
+/* Focus Effect for Dropdown */
 select:focus {
+  background: linear-gradient(to right, #001133, #007BFF); /* Keep gradient */
+  color: black; /* Ensure text remains white */
   box-shadow: 0 0 25px rgba(0, 123, 255, 1);
 }
 
-/* Captions Style */
-#captions-container {
-  position: absolute;
-  bottom: 15%;
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-  font-family: 'Arial', sans-serif;
-  text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+/* Prevent White Background on Blur */
+select:invalid,
+select:disabled,
+select:not(:focus) {
+  background: linear-gradient(to right, #001133, #007BFF); /* Force gradient */
+  color: white; /* White text color */
 }
 
-/* Album Art */
-#album-art {
-  display: block;
-  margin: 0 auto;
-  width: 200px; /* Fixed size for larger screens */
-  height: 200px;
-  object-fit: cover;
+/* Custom Scrollbar for Dropdown */
+select::-webkit-scrollbar {
+  width: 8px;
+}
+select::-webkit-scrollbar-thumb {
+  background: #007BFF;
   border-radius: 10px;
 }
 
-/* Media Query for Mobile Screens */
+#album-art {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.8); /* Glow effect */
+  top: 45%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
 @media (max-width: 768px) {
-  /* Smaller Audio Player */
+  /* Audio Player */
   audio {
-    width: 90%; /* Full width on small screens */
-    height: 35px; /* Slightly smaller */
+    width: 90%; /* Full width for mobile */
+    height: 35px; /* Slightly smaller height */
   }
 
   /* Dropdown Selector */
@@ -86,40 +99,44 @@ select:focus {
     font-size: 14px; /* Smaller font size */
     padding: 8px 12px;
     top: 5px;
-    right: 5px; /* Adjust positioning */
+    right: 5px; /* Adjust position */
   }
 
   /* Captions */
   #captions-container {
-    font-size: 16px; /* Smaller text for captions */
-    bottom: 10%; /* Adjusted position */
+    font-size: 16px; /* Smaller font size for captions */
+    bottom: 10%; /* Move slightly higher on mobile */
   }
 
   /* Album Art */
   #album-art {
     width: 150px;
-    height: 150px;
+    height: 150px; /* Smaller album art */
   }
 }
 
-/* Media Query for Extra Small Screens */
+/* -------- SMALLER MOBILE-SPECIFIC CHANGES -------- */
 @media (max-width: 480px) {
+  /* Audio Player */
   audio {
-    width: 100%; /* Full width */
+    width: 100%; /* Full width for very small screens */
     height: 30px;
   }
 
+  /* Dropdown Selector */
   select {
     font-size: 12px;
     padding: 6px 10px;
   }
 
+  /* Captions */
   #captions-container {
     font-size: 14px;
   }
 
+  /* Album Art */
   #album-art {
     width: 120px;
-    height: 120px;
+    height: 120px; /* Very small album art */
   }
 }
