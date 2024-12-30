@@ -1,8 +1,10 @@
-window.addEventListener('click', () => {
+// Unlock and initialize audio context on page load
+window.addEventListener('DOMContentLoaded', () => {
   if (!audioCtx) {
-    initializeAudio(); // Unlock audio immediately
+    initializeAudio();
   }
 });
+
 
 
 // Scene Setup
@@ -203,9 +205,10 @@ function playSong(index) {
   audio.load();
 
   // Ensure AudioContext is initialized before playing
-  if (!audioCtx) {
+  if (!audioCtx || audioCtx.state === 'suspended') {
     initializeAudio();
   }
+  
 
   audio
     .play()
@@ -255,6 +258,13 @@ window.addEventListener('click', () => {
     playSong(0); // Start autoplay from the first song
   }
 });
+
+// Load the first song on page load
+window.addEventListener('DOMContentLoaded', () => {
+  playSong(0); // Start with the first song in the list
+  audio.load(); // Force audio element to load immediately
+});
+
 
 // Handle Resize for Mobile and Desktop
 function handleResize() {
