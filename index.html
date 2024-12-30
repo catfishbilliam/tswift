@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music Visualizer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <!-- Suppress favicon error -->
-  <link rel="icon" href="data:,">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:," />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <!-- Dropdown for Song Selection -->
   <select id="song-selector">
     <option value="wacced-out-murals.mp3">wacced out murals</option>
+    <option value="squabble-up.mp3">squabble up</option>
+    <option value="luther.mp3">luther</option>
+    <option value="man-at-the-garden.mp3">man at the garden</option>
     <option value="hey-now.mp3">hey now</option>
-    <option value="dodger.mp3">dodger</option>
+    <option value="reincarnated.mp3">reincarnated</option>
+    <option value="tv-off.mp3">tv off</option>
+    <option value="dodger-blue.mp3">dodger blue</option>
     <option value="peekaboo.mp3">peekaboo</option>
+    <option value="heart-pt-6.mp3">heart pt. 6</option>
+    <option value="gnx.mp3">gnx</option>
+    <option value="gloria.mp3">gloria</option>
   </select>
 
   <!-- Album Art -->
   <img id="album-art" src="gnx.jpg" alt="Album Art" />
 
   <!-- Audio Player -->
-  <audio id="audio-player" controls>
-    <source src="wacced-out-murals.mp3" type="audio/mp3" />
-  </audio>
+  <audio id="audio-player" controls></audio>
 
   <!-- Captions Track -->
   <track id="captions-track" src="captions.vtt" kind="subtitles" srclang="en" label="English" default />
@@ -40,37 +45,36 @@
     window.THREE = THREE;
   </script>
 
-    <!-- GSAP Animation for Album Art -->
-    <script>
-      const albumArt = document.getElementById('album-art');
-  
-      // GSAP Glow Effect
-      gsap.to(albumArt, {
-        boxShadow: '0 0 20px 5px rgba(0, 123, 255, 0.8)', // Glow effect
-        repeat: -1, // Infinite glow loop
-        yoyo: true, // Smooth in-out glow
-        duration: 1.5, // Glow transition
-        ease: 'sine.inOut',
-      });
-  
-      // GSAP Spinning Animation
-      gsap.to(albumArt, {
-        rotation: 360, // Full spin
-        duration: 10, // Spins every 10 seconds
-        repeat: -1, // Infinite loop
-        ease: 'linear', // Continuous smooth spin
-      });
-  
-      // Hover Animation for Zoom
-      albumArt.addEventListener('mouseenter', () => {
-        gsap.to(albumArt, { scale: 1.2, duration: 0.3 }); // Slight zoom-in effect
-      });
-  
-      albumArt.addEventListener('mouseleave', () => {
-        gsap.to(albumArt, { scale: 1.0, duration: 0.3 }); // Return to normal size
-      });
-    </script>
-  
+  <!-- GSAP Animation for Album Art -->
+  <script>
+    const albumArt = document.getElementById('album-art');
+
+    // GSAP Glow Effect
+    gsap.to(albumArt, {
+      boxShadow: '0 0 20px 5px rgba(0, 123, 255, 0.8)', // Glow effect
+      repeat: -1, // Infinite glow loop
+      yoyo: true, // Smooth in-out glow
+      duration: 1.5, // Glow transition
+      ease: 'sine.inOut',
+    });
+
+    // GSAP Spinning Animation
+    gsap.to(albumArt, {
+      rotation: 360, // Full spin
+      duration: 10, // Spins every 10 seconds
+      repeat: -1, // Infinite loop
+      ease: 'linear', // Continuous smooth spin
+    });
+
+    // Hover Animation for Zoom
+    albumArt.addEventListener('mouseenter', () => {
+      gsap.to(albumArt, { scale: 1.2, duration: 0.3 }); // Slight zoom-in effect
+    });
+
+    albumArt.addEventListener('mouseleave', () => {
+      gsap.to(albumArt, { scale: 1.0, duration: 0.3 }); // Return to normal size
+    });
+  </script>
 
   <!-- Main JavaScript -->
   <script type="module" src="index.js"></script>
