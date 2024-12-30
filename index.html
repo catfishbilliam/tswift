@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Suppress favicon error -->
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Audiowide&family=Cedarville+Cursive&family=Fascinate&family=Inter:ital,opsz,wght@0,14..32,700;1,14..32,700&family=Lunasima:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Dropdown for Song Selection -->
+  <select id="song-selector">
+    <option value="wacced-out-murals.mp3">wacced out murals</option>
+    <option value="hey-now.mp3">hey now</option>
+    <option value="dodger.mp3">dodger</option>
+    <option value="peekaboo.mp3">peekaboo</option>
+
+  </select>
+
+  <img id="album-art" src="gnx.jpg" alt="Album Art" />
+
+
+  <!-- Audio Player -->
+  <audio id="audio-player" controls>
+    <source src="wacced-out-murals.mp3" type="audio/mp3" />
+  </audio>
+
+  <!-- Captions Track -->
+  <track id="captions-track" src="captions.vtt" kind="subtitles" srclang="en" label="English" default />
+
+  
+
+  <!-- Three.js Module -->
+  <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+    window.THREE = THREE;
+  </script>
+  <script type="module" src="index.js"></script>
+</body>
+</html>
