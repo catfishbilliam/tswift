@@ -11,7 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <!-- Dropdown for Song Selection -->
+  <!-- Dropdown Container -->
+<div id="dropdown-container">
+  <h3 id="song-title">Select Song:</h3>
   <select id="song-selector">
     <option value="wacced-out-murals.mp3">wacced out murals</option>
     <option value="squabble-up.mp3">squabble up</option>
@@ -26,6 +28,8 @@
     <option value="gnx.mp3">gnx</option>
     <option value="gloria.mp3">gloria</option>
   </select>
+</div>
+
 
   <!-- Album Art -->
   <img id="album-art" src="gnx.jpg" alt="Album Art" />
@@ -48,6 +52,8 @@
   <!-- GSAP Animation for Album Art -->
   <script>
     const albumArt = document.getElementById('album-art');
+    const songSelector = document.getElementById('song-selector');
+    const songTitle = document.getElementById('song-title');
 
     // GSAP Glow Effect
     gsap.to(albumArt, {
@@ -73,6 +79,12 @@
 
     albumArt.addEventListener('mouseleave', () => {
       gsap.to(albumArt, { scale: 1.0, duration: 0.3 }); // Return to normal size
+    });
+
+    // Update Heading When Dropdown Changes
+    songSelector.addEventListener('change', () => {
+      const selectedOption = songSelector.options[songSelector.selectedIndex].text;
+      songTitle.innerText = `Select Song: ${selectedOption}`;
     });
   </script>
 

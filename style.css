@@ -11,6 +11,29 @@ body {
   justify-content: flex-end; /* Aligns content at the bottom */
 }
 
+/* ---------- DROPDOWN CONTAINER ---------- */
+#dropdown-container {
+  position: absolute;
+  top: 25px; /* Distance from the top */
+  right: 25px; /* Aligns to the right */
+  display: flex;
+  flex-direction: column; /* Stack heading and dropdown vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 10px; /* Add spacing between heading and dropdown */
+}
+
+/* Heading Style */
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Teko', sans-serif;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+  margin: 0; /* Remove default margin */
+}
+
+
 /* Audio Player - Desktop */
 audio {
   position: absolute;
@@ -26,16 +49,15 @@ audio {
   border-radius: 5px;
 }
 
-/* Dropdown Selector - Desktop */
+/* Dropdown Selector */
 select {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  width: 250px; /* Set a wider width */
   padding: 10px 15px;
   font-family: inherit;
   letter-spacing: 2px;
   font-size: 18px;
   font-weight: bold;
+  text-align: center;
   background: linear-gradient(to right, #001133, #007BFF);
   color: white;
   border: none;
@@ -46,7 +68,7 @@ select {
   transition: all 0.3s ease;
 }
 
-/* Dropdown Hover and Focus */
+/* Hover and Focus Effects */
 select:hover {
   background: #007BFF;
   box-shadow: 0 0 20px rgba(0, 123, 255, 1);
@@ -91,12 +113,19 @@ select:focus {
     height: 35px;
   }
 
-  /* Dropdown Selector */
+  #dropdown-container {
+    top: 10px; /* Adjust spacing for smaller screens */
+    right: 10px;
+  }
+
   select {
-    font-size: 14px;
+    width: 200px; /* Slightly smaller width */
+    font-size: 16px;
     padding: 8px 12px;
-    top: 5px;
-    right: 5px;
+  }
+
+  h3 {
+    font-size: 16px;
   }
 
   /* Captions */
@@ -120,10 +149,19 @@ select:focus {
     height: 30px;
   }
 
-  /* Dropdown Selector */
+  #dropdown-container {
+    top: 5px;
+    right: 5px;
+  }
+
   select {
-    font-size: 12px;
+    width: 150px;
+    font-size: 14px;
     padding: 6px 10px;
+  }
+
+  h3 {
+    font-size: 14px;
   }
 
   /* Captions */
