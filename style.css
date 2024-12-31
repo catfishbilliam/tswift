@@ -12,14 +12,12 @@ body {
 }
 
 /* ---------- DROPDOWN CONTAINER ---------- */
+/* ---------- DROPDOWN CONTAINER ---------- */
 #dropdown-container {
   position: absolute;
-  top: 25px; /* Distance from the top */
-  right: 25px; /* Aligns to the right */
-  display: flex;
-  flex-direction: column; /* Stack heading and dropdown vertically */
-  align-items: center; /* Center items horizontally */
-  gap: 10px; /* Add spacing between heading and dropdown */
+  top: 20px; /* Fixed distance from the top */
+  left: 20px; /* Fixed position */
+  width: 300px; /* Fixed width */
 }
 
 /* Heading Style */
@@ -142,36 +140,42 @@ select:focus {
 }
 
 /* ---------- EXTRA SMALL MOBILE SCREENS (480px) ---------- */
-@media (max-width: 480px) {
-  /* Audio Player */
-  audio {
-    width: 100%;
-    height: 30px;
-  }
-
+/* ---------- MOBILE-SPECIFIC CHANGES ---------- */
+@media (max-width: 768px) {
+  /* Dropdown Adjustments */
   #dropdown-container {
-    top: 5px;
-    right: 5px;
+    position: fixed; /* Prevents movement */
+    top: 10px;
+    left: 10px; /* Locks position in the top-left corner */
+    width: 250px; /* Fixed width */
   }
 
   select {
-    width: 150px;
-    font-size: 14px;
-    padding: 6px 10px;
+    width: 100%; /* Matches container width */
+    font-size: 16px;
+    padding: 8px 12px;
   }
 
   h3 {
-    font-size: 14px;
-  }
-
-  /* Captions */
-  #captions-container {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   /* Album Art */
   #album-art {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.8); /* Hot pink glow */
+  }
+
+  /* Captions */
+  #captions-container {
+    font-size: 16px;
+    bottom: 10%;
+  }
+
+  /* Audio Player */
+  audio {
+    width: 90%;
+    height: 35px;
   }
 }

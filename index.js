@@ -293,7 +293,7 @@ function handleResize() {
   camera.updateProjectionMatrix();
 
   // Circular Visualizer
-  const newRadius = isMobile ? 110 : 125; // Slightly smaller radius for mobile
+  const newRadius = isMobile ? Math.min(window.innerWidth / 6, 90) : 125; // Dynamic sizing
   const newBarHeight = isMobile ? 8 : 10; // Slightly shorter bars for mobile
 
   bars.forEach((bar, i) => {
