@@ -161,10 +161,10 @@ select:focus {
   }
 
   /* Album Art */
+  /* Album Art */
   #album-art {
-    width: 150px;
-    height: 150px;
-    box-shadow: 0 0 20px rgba(255, 20, 147, 0.8); /* Hot pink glow */
+    width: 100px;
+    height: 100px;
   }
 
   /* Captions */
