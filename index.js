@@ -137,36 +137,31 @@ function animate() {
   if (analyser) {
     analyser.getByteFrequencyData(dataArray);
 
-    // Circular Visualizer Animation
-bars.forEach((bar, i) => {
-  const scale = Math.pow(dataArray[i] / 128.0, 1.2); // Softer scaling for pop
-  bar.scale.z = scale * 3.5;
-  const colorScale = scale * 0.6 + 0.2;
-  bar.material.color.setHSL(colorScale, 0.8, 0.7); // Softer pastel shades
-});
+    bars.forEach((bar, i) => {
+      const scale = Math.pow(dataArray[i] / 128.0, 1.2); // Adjust this for less dramatic bars
+      bar.scale.z = scale * 3; // Less dramatic scaling
+      bar.material.color.setHSL(scale, 1, 0.5);
+    });
 
-// Wave Mesh Animation
-const vertices = waveMesh.geometry.attributes.position.array;
-const rows = gridSizeZ + 1;
-const cols = gridSizeX + 1;
+    const vertices = waveMesh.geometry.attributes.position.array;
+    const rows = gridSizeZ + 1;
+    const cols = gridSizeX + 1;
 
-for (let i = 0; i < rows; i++) {
-  for (let j = 0; j < cols; j++) {
-    const index = (i * cols + j) * 3 + 2;
-    const frequencyIndex = Math.floor((j / cols) * dataArray.length);
-    const amplitude = dataArray[frequencyIndex] / 256;
-    vertices[index] =
-      Math.sin(i * 0.12 + Date.now() * 0.01) * amplitude * 20 +
-      Math.cos(j * 0.1 + Date.now() * 0.008) * amplitude * 15;
-  }
-}
-waveMesh.geometry.attributes.position.needsUpdate = true;
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        const index = (i * cols + j) * 3 + 2;
+        const frequencyIndex = Math.floor((j / cols) * dataArray.length);
+        const amplitude = dataArray[frequencyIndex] / 256;
+        // Subtle wave animation by reducing the amplitude and speed of movement
+        vertices[index] = Math.sin(i * 0.05 + Date.now() * 0.005) * amplitude * 15 + Math.cos(j * 0.05 + Date.now() * 0.003) * amplitude * 10;
+      }
+    }
 
-
-    updateCaptions();
+    waveMesh.geometry.attributes.position.needsUpdate = true;
   }
   renderer.render(scene, camera);
 }
+
 
 // Initialize
 createWaveMesh();
