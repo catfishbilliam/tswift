@@ -80,9 +80,9 @@ function initializeAudio() {
 function createWaveMesh() {
   const geometry = new THREE.PlaneGeometry(window.innerWidth, gridSizeZ * gridSpacing, gridSizeX, gridSizeZ);
   const material = new THREE.MeshStandardMaterial({
-    color: 0x001133,
+    color: 0xc1b7f1, // Periwinkle color
     wireframe: true,
-    emissive: 0x007BFF,
+    emissive: 0x9370db, // Light purple glow
     emissiveIntensity: 0.3,
   });
   waveMesh = new THREE.Mesh(geometry, material);
@@ -92,10 +92,13 @@ function createWaveMesh() {
   scene.add(waveMesh);
 }
 
+
 // Create Circular Visualizer
 function createCircularVisualizer() {
-  const material = new THREE.MeshBasicMaterial({ color: 0x007BFF });
+  const colors = [0xff69b4, 0xffc0cb, 0xda70d6]; // Pink, light red, and purple shades
   for (let i = 0; i < numBars; i++) {
+    const color = colors[i % colors.length];
+    const material = new THREE.MeshBasicMaterial({ color });
     const geometry = new THREE.BoxGeometry(0.5, 0.5, 10);
     const bar = new THREE.Mesh(geometry, material);
     const angle = (i / numBars) * Math.PI * 2;
@@ -107,6 +110,7 @@ function createCircularVisualizer() {
     bars.push(bar);
   }
 }
+
 
 // Load Captions
 track.addEventListener('load', () => {
@@ -133,25 +137,31 @@ function animate() {
   if (analyser) {
     analyser.getByteFrequencyData(dataArray);
 
-    bars.forEach((bar, i) => {
-      const scale = Math.pow(dataArray[i] / 128.0, 1.5);
-      bar.scale.z = scale * 5;
-      bar.material.color.setHSL(scale, 1, 0.5);
-    });
+    // Circular Visualizer Animation
+bars.forEach((bar, i) => {
+  const scale = Math.pow(dataArray[i] / 128.0, 1.2); // Softer scaling for pop
+  bar.scale.z = scale * 3.5;
+  const colorScale = scale * 0.6 + 0.2;
+  bar.material.color.setHSL(colorScale, 0.8, 0.7); // Softer pastel shades
+});
 
-    const vertices = waveMesh.geometry.attributes.position.array;
-    const rows = gridSizeZ + 1;
-    const cols = gridSizeX + 1;
+// Wave Mesh Animation
+const vertices = waveMesh.geometry.attributes.position.array;
+const rows = gridSizeZ + 1;
+const cols = gridSizeX + 1;
 
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
-        const index = (i * cols + j) * 3 + 2;
-        const frequencyIndex = Math.floor((j / cols) * dataArray.length);
-        const amplitude = dataArray[frequencyIndex] / 256;
-        vertices[index] = Math.sin(i * 0.1 + Date.now() * 0.01) * amplitude * 30 + Math.cos(j * 0.1 + Date.now() * 0.008) * amplitude * 20;
-      }
-    }
-    waveMesh.geometry.attributes.position.needsUpdate = true;
+for (let i = 0; i < rows; i++) {
+  for (let j = 0; j < cols; j++) {
+    const index = (i * cols + j) * 3 + 2;
+    const frequencyIndex = Math.floor((j / cols) * dataArray.length);
+    const amplitude = dataArray[frequencyIndex] / 256;
+    vertices[index] =
+      Math.sin(i * 0.12 + Date.now() * 0.01) * amplitude * 20 +
+      Math.cos(j * 0.1 + Date.now() * 0.008) * amplitude * 15;
+  }
+}
+waveMesh.geometry.attributes.position.needsUpdate = true;
+
 
     updateCaptions();
   }
@@ -168,19 +178,25 @@ animate();
 
 // Song List (Match Dropdown Order)
 const songList = [
-  'wacced-out-murals.mp3',
-  'squabble-up.mp3',
-  'luther.mp3',
-  'man-at-the-garden.mp3',
-  'hey-now.mp3',
-  'reincarnated.mp3',
-  'tv-off.mp3',
-  'dodger-blue.mp3',
-  'peekaboo.mp3',
-  'heart-pt-6.mp3',
-  'gnx.mp3',
-  'gloria.mp3',
+  'fortnight.mp3',
+  'the-tortured-poets-department.mp3',
+  'my-boy-only-breaks-his-favorite-toys.mp3',
+  'down-bad.mp3',
+  'so-long-london.mp3',
+  'but-daddy-i-love-him.mp3',
+  'fresh-out-the-slammer.mp3',
+  'florida.mp3',
+  'guilty-as-sin.mp3',
+  'whos-afraid-of-little-old-me.mp3',
+  'i-can-fix-him.mp3',
+  'loml.mp3',
+  'i-can-do-it-with-a-broken-heart.mp3',
+  'the-smallest-man-who-ever-lived.mp3',
+  'the-alchemy.mp3',
+  'clara-bow.mp3',
+  'but-daddy-i-love-him.mp3' // Acoustic version
 ];
+
 
 // Track Elements
 let currentSongIndex = 0; // Start with the first song
